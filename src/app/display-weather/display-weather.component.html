@@ -1,0 +1,50 @@
+<div class="container mt-3" *ngIf="weatherInfo">
+  <div class="row">
+    <div class="col-6">
+      <div class="row">
+        <h1>
+          {{ weatherInfo?.name }}<span *ngIf="weatherInfo?.name">,</span>
+          {{ weatherInfo?.sys.country }}
+        </h1>
+      </div>
+      <div class="row">
+        <h4>
+          Latitude: {{ weatherInfo?.coord.lat }} Logitude:
+          {{ weatherInfo?.coord.lon }}
+        </h4>
+      </div>
+    </div>
+    <div class="offset-md-3 col-3" title="Minimum temperature">
+      <i class="bi bi-thermometer-snow weather-icon"></i>
+      <div class="ms-5">
+        <p class="mb-0">Minimum temperature</p>
+        <p class="text">{{ weatherInfo?.main.temp_min }}°C</p>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-6 text">{{ weatherInfo?.main.temp }}°C</div>
+    <div class="offset-md-3 col-3" title="Maximum temperature">
+      <i class="bi bi-thermometer-sun weather-icon"></i>
+      <div class="ms-5">
+        <p class="mb-0">Maximum temperature</p>
+        <p class="text">{{ weatherInfo?.main.temp_max }}°C</p>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-6">
+      <button type="button" class="btn btn-primary">
+        <i class="bi bi-geo-alt-fill"></i>
+        Get random location weather
+      </button>
+    </div>
+    <div class="offset-md-3 col-3" title="Humidity">
+      <i class="bi bi-cloud-rain-fill weather-icon"></i>
+      <div class="ms-5">
+        <p class="mb-0">Humidity</p>
+        <p class="text">{{ weatherInfo?.main.humidity }}%</p>
+      </div>
+    </div>
+  </div>
+</div>

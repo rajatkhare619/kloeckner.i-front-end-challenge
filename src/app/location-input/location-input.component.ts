@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { CountriesService } from '../services/countries.service';
 import { Observable } from 'rxjs';
+import { Address } from 'ngx-google-places-autocomplete/objects/address';
 
 @Component({
   selector: 'app-location-input',
@@ -9,9 +10,13 @@ import { Observable } from 'rxjs';
 })
 export class LocationInputComponent implements OnInit {
   @Input() countries!: { [key: string]: string };
-  @Output() onLocationChange = new EventEmitter<{
+  @Output() onDropdownLocationChange = new EventEmitter<{
     city: string;
     country: string;
+  }>();
+  @Output() onGoogleLocationChange = new EventEmitter<{
+    lat: number;
+    lon: number;
   }>();
   city!: string;
   country = 'select';
@@ -21,6 +26,17 @@ export class LocationInputComponent implements OnInit {
   ngOnInit(): void {}
 
   getWeatherData() {
-    this.onLocationChange.emit({ city: this.city, country: this.country });
+    this.onDropdownLocationChange.emit({
+      city: this.city,
+      country: this.country,
+    });
+  }
+
+  onGoogleSearch(address: Address) {
+    this.onGoogleLocationChange.emit({
+      lat: address.geometry.location.lat(),
+      lon: address.geometry.location.lng(),
+    });
+    console.log(address.geometry.location.lat());
   }
 }

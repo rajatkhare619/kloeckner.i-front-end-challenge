@@ -1,21 +1,26 @@
-<div class="input-group mb-3">
-  <input
-    type="text"
-    class="form-control"
-    placeholder="Enter a city name"
-    aria-label="Username"
-    [(ngModel)]="city"
-  />
-  <select
-    [(ngModel)]="country"
-    class="form-select"
-    aria-label="Default select example"
-  >
-    <option value="select">Select a country</option>
-    <option [value]="country.key" *ngFor="let country of countries | keyvalue">
-      {{ country.value }}
-    </option>
-  </select>
+<div class="row">
+  <div class="input-group mb-3">
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Enter a city name"
+      aria-label="Username"
+      [(ngModel)]="city"
+    />
+    <select
+      [(ngModel)]="country"
+      class="form-select"
+      aria-label="Default select example"
+    >
+      <option value="select">Select a country</option>
+      <option
+        [value]="country.key"
+        *ngFor="let country of countries | keyvalue"
+      >
+        {{ country.value }}
+      </option>
+    </select>
+  </div>
 </div>
 <div class="row position-relative">
   <button
@@ -24,4 +29,18 @@
   >
     <span class="">Get weather</span>
   </button>
+</div>
+<div class="row mt-5">
+  <div class="mb-3">
+    <label for="google-location" class="form-label"
+      >Search location on Google</label
+    >
+    <input
+      id="google-location"
+      class="form-control"
+      ngx-google-places-autocomplete
+      #placesRef="ngx-places"
+      (onAddressChange)="onGoogleSearch($event)"
+    />
+  </div>
 </div>

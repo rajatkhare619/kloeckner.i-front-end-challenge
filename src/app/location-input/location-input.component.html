@@ -1,0 +1,27 @@
+<div class="input-group mb-3">
+  <input
+    type="text"
+    class="form-control"
+    placeholder="Enter a city name"
+    aria-label="Username"
+    [(ngModel)]="city"
+  />
+  <select
+    [(ngModel)]="country"
+    class="form-select"
+    aria-label="Default select example"
+  >
+    <option value="select">Select a country</option>
+    <option [value]="country.key" *ngFor="let country of countries | keyvalue">
+      {{ country.value }}
+    </option>
+  </select>
+</div>
+<div class="row position-relative">
+  <button
+    (click)="getWeatherData()"
+    class="btn btn-success w-50 position-absolute start-50 translate-middle-x"
+  >
+    <span class="">Get weather</span>
+  </button>
+</div>

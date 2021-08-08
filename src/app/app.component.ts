@@ -9,7 +9,6 @@ import { CountriesService } from './services/countries.service';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  title = 'kloeckner23';
   weatherData$!: Observable<WeatherData>;
   countries$!: Observable<{ [key: string]: string }>;
 
@@ -32,5 +31,12 @@ export class AppComponent implements OnInit {
 
   getRandomData() {
     this.weatherData$ = this.weatherService.getRandomWeatherData();
+  }
+
+  getLocationByGoogle(coords: { lat: number; lon: number }) {
+    this.weatherData$ = this.weatherService.getWeatherDataWithCoords(
+      coords.lat,
+      coords.lon
+    );
   }
 }

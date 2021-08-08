@@ -8,15 +8,19 @@ import { Observable } from 'rxjs';
   styleUrls: ['./location-input.component.scss'],
 })
 export class LocationInputComponent implements OnInit {
-  @Input() countries!: string[];
-  @Output() location = new EventEmitter();
+  @Input() countries!: { [key: string]: string };
+  @Output() onLocationChange = new EventEmitter<{
+    city: string;
+    country: string;
+  }>();
   city!: string;
   country = 'select';
+
   constructor() {}
 
   ngOnInit(): void {}
 
   getWeatherData() {
-    this.location.emit({ city: this.city, country: this.country });
+    this.onLocationChange.emit({ city: this.city, country: this.country });
   }
 }

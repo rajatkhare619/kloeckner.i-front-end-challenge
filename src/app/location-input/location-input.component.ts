@@ -37,6 +37,5 @@ export class LocationInputComponent implements OnInit {
       lat: address.geometry.location.lat(),
       lon: address.geometry.location.lng(),
     });
-    console.log(address.geometry.location.lat());
   }
 }

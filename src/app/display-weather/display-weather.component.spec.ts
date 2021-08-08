@@ -8,9 +8,8 @@ describe('DisplayWeatherComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DisplayWeatherComponent ]
-    })
-    .compileComponents();
+      declarations: [DisplayWeatherComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -21,5 +20,11 @@ describe('DisplayWeatherComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should emit the event for getting random data', () => {
+    const spy = spyOn(component.getRandomWeather, 'emit');
+    component.getRandomWeatherData();
+    expect(spy).toHaveBeenCalled();
   });
 });

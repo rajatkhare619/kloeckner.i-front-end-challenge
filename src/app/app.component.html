@@ -1,10 +1,21 @@
 <div class="container mt-3">
   <app-display-weather
-    [weatherInfo]="(weatherData$ | async)!"
+    *ngIf="weatherData$ | async as data; else error"
+    [weatherInfo]="data"
     (getRandomWeather)="getRandomData()"
   ></app-display-weather>
   <app-location-input
     [countries]="(countries$ | async)!"
-    (onLocationChange)="getLocationData($event)"
+    (onDropdownLocationChange)="getLocationData($event)"
+    (onGoogleLocationChange)="getLocationByGoogle($event)"
   ></app-location-input>
+  <ng-template #error>
+    <div
+      class="col-md-6 offset-3 text-center border border-danger rounded mb-3"
+    >
+      <h3 class="text-danger">
+        Unfortunately, the city could not be found. Please try another.
+      </h3>
+    </div>
+  </ng-template>
 </div>

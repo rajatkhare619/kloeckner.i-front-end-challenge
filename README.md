@@ -1,3 +1,5 @@
+![Weathermap Client](img.png)
+
 # Prerequisite
 You will need Node.js 14.15.x or later minor version (https://nodejs.org/en/download/)
 I am using version 14.17.0
